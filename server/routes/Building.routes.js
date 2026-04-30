@@ -3,7 +3,7 @@ import { verifyToken, authorizeRoles } from '../routes/Auth.middleware.js'
 
 const router = express.Router();
 
-const {
+import {
   getAllBuildings,
   createBuilding,
   getBuildingById,
@@ -11,7 +11,7 @@ const {
   deleteBuilding,
   getFloorsByBuilding,
   getRoomsByBuilding,
-} = require("../controllers/building.controller");
+} from '../controllers/building.controller.js';
  
 /**
  * Building Routes
@@ -34,4 +34,4 @@ router.delete("/:id",   authorizeRoles("admin"), deleteBuilding);
 router.get("/:id/floors", authorizeRoles("admin", "staff"), getFloorsByBuilding);
 router.get("/:id/rooms",  authorizeRoles("admin", "staff"), getRoomsByBuilding);
  
-module.exports = router;
+export default router;

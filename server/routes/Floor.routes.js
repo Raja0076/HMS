@@ -3,13 +3,13 @@ import { verifyToken, authorizeRoles } from '../routes/Auth.middleware.js'
 
 const router = express.Router();
 
-const {
+import {
   createFloor,
   getFloorById,
   updateFloor,
   deleteFloor,
   getRoomsByFloor,
-} = require("../controllers/floor.controller");
+} from '../controllers/floor.controller.js';
  
 /**
  * Floor Routes
@@ -27,4 +27,4 @@ router.put("/:id",         authorizeRoles("admin"),           updateFloor);
 router.delete("/:id",      authorizeRoles("admin"),           deleteFloor);
 router.get("/:id/rooms",   authorizeRoles("admin", "staff"), getRoomsByFloor);
  
-module.exports = router;
+export default router;

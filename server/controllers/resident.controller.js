@@ -1,4 +1,4 @@
-import { Resident, Room, User} from '../models';
+import { Resident, Room, User } from '../models/index.js';
 
 
 /**
@@ -214,7 +214,7 @@ const checkoutResident = async (req, res) => {
   }
 };
  
-module.exports = {
+export {
   getAllResidents,
   getResidentById,
   updateResident,

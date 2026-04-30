@@ -1,4 +1,4 @@
-import { Room, Resident, Floor, Building } from '../models';
+import { Room, Resident, Floor, Building } from '../models/index.js';
 
 /**
  * GET /api/rooms
@@ -233,7 +233,7 @@ const updateRoomStatus = async (req, res) => {
   }
 };
  
-module.exports = {
+export {
   getAllRooms,
   createRoom,
   getRoomById,

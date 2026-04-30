@@ -75,9 +75,7 @@ const userSchema = new mongoose.Schema(
   }
 );
  
-// Index for fast lookups
-userSchema.index({ email: 1 });
-userSchema.index({ username: 1 });
+// Index for fast lookups (email and username already have indexes via unique: true)
 userSchema.index({ role: 1, status: 1 });
  
-module.exports = mongoose.model("User", userSchema);
+export default mongoose.model("User", userSchema);

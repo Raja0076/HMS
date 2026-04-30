@@ -78,9 +78,9 @@ const residentSchema = new mongoose.Schema(
   }
 );
  
-residentSchema.index({ user_id: 1 });
+// user_id already has an index via unique: true
 residentSchema.index({ room_id: 1 });
 residentSchema.index({ building_id: 1 });
 residentSchema.index({ check_in_date: 1, check_out_date: 1 });
  
-module.exports = mongoose.model("Resident", residentSchema);
+export default mongoose.model("Resident", residentSchema);

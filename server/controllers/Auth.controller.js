@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcryptjs'
+import bcrypt from 'bcrypt'
 
-import { User, Resident} from '../models';
+import { User, Resident } from '../models/index.js';
 
 /**
  * Generates a signed JWT token for the given user ID and role
@@ -164,5 +164,5 @@ const changePassword = async (req, res) => {
   }
 };
  
-module.exports = { register, login, logout, getMe, changePassword };
+export { register, login, logout, getMe, changePassword };
  

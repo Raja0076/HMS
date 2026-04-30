@@ -2,14 +2,14 @@ import express from 'express'
 import { verifyToken, authorizeRoles } from '../routes/Auth.middleware.js'
 const router = express.Router();
  
-const {
+import {
   register,
   login,
   logout,
   getMe,
   changePassword,
-} = require("../controllers/auth.controller");
- 
+} from '../controllers/Auth.controller.js';
+
 /**
  * Auth Routes
  * Base path: /api/auth
@@ -24,4 +24,4 @@ router.post("/logout",          verifyToken, logout);
 router.get("/me",               verifyToken, getMe);
 router.put("/change-password",  verifyToken, changePassword);
  
-module.exports = router;
+export default router;

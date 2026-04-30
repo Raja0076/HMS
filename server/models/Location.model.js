@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 const LOCATION_TYPES = [
   "common_area",   // Lobby, lounge, corridor
   "amenity",       // Gym, pool, recreation room
@@ -67,4 +69,4 @@ const locationSchema = new mongoose.Schema(
 locationSchema.index({ building_id: 1, location_type: 1 });
 locationSchema.index({ floor_id: 1 });
  
-module.exports = mongoose.model("Location", locationSchema);
+export default mongoose.model("Location", locationSchema);

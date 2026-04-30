@@ -21,4 +21,4 @@ const registerRoutes = (app) => {
   });
 };
  
-module.exports = { registerRoutes };
+export { registerRoutes };
