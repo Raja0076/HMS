@@ -38,4 +38,4 @@ const floorSchema = new mongoose.Schema(
 // A floor number must be unique within a building
 floorSchema.index({ building_id: 1, floor_no: 1 }, { unique: true });
  
-module.exports = mongoose.model("Floor", floorSchema);
+export default mongoose.model("Floor", floorSchema);

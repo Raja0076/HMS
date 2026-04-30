@@ -1,5 +1,5 @@
-import bcrypt from 'bcryptjs'
-import { User, Resident } from '../models'
+import bcrypt from 'bcrypt'
+import { User, Resident } from '../models/index.js'
 
 /**
  * GET /api/users
@@ -178,7 +178,7 @@ const updateUserStatus = async (req, res) => {
   }
 };
  
-module.exports = {
+export {
   getAllUsers,
   createUser,
   getUserById,

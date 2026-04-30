@@ -3,7 +3,7 @@ import { verifyToken, authorizeRoles } from '../routes/Auth.middleware.js'
 
 const router = express.Router();
 
-const {
+import {
   getAllRooms,
   createRoom,
   getRoomById,
@@ -11,7 +11,7 @@ const {
   deleteRoom,
   getRoomResidents,
   updateRoomStatus,
-} = require("../controllers/room.controller");
+} from '../controllers/room.controller.js';
  
 /**
  * Room Routes
@@ -41,4 +41,4 @@ router.get("/:id/residents", authorizeRoles("admin", "staff"), getRoomResidents)
 // Quick status change (available → maintenance, etc.) without full update
 router.put("/:id/status",    authorizeRoles("admin", "staff"), updateRoomStatus);
  
-module.exports = router;
+export default router;

@@ -3,14 +3,14 @@ import { verifyToken, authorizeRoles } from '../routes/Auth.middleware.js'
 
 const router = express.Router();
 
-const {
+import {
   getAllUsers,
   createUser,
   getUserById,
   updateUser,
   deleteUser,
   updateUserStatus,
-} = require("../controllers/user.controller");
+} from '../controllers/user.controller.js';
  
 /**
  * User Routes
@@ -29,4 +29,4 @@ router.put("/:id",           authorizeRoles("admin"),           updateUser);
 router.delete("/:id",        authorizeRoles("admin"),           deleteUser);
 router.put("/:id/status",    authorizeRoles("admin"),           updateUserStatus);
  
-module.exports = router;
+export default router;

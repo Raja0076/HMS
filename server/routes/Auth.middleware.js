@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { User } from '../models'
+import { User } from '../models/index.js'
 
 const verifyToken = async (req, res, next) => {
   try {
@@ -45,4 +45,4 @@ const authorizeRoles = (...roles) => {
   };
 };
  
-module.exports = { verifyToken, authorizeRoles };
+export { verifyToken, authorizeRoles };

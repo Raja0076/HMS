@@ -1,4 +1,4 @@
-import { Floor, Room, Building } from '../models';
+import { Floor, Room, Building } from '../models/index.js';
 
 /**
  * POST /api/buildings/:id/floors
@@ -133,7 +133,7 @@ const getRoomsByFloor = async (req, res) => {
   }
 };
  
-module.exports = {
+export {
   createFloor,
   getFloorById,
   updateFloor,

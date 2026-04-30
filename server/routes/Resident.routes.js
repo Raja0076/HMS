@@ -3,13 +3,13 @@ import { verifyToken, authorizeRoles } from '../routes/Auth.middleware.js'
 
 const router = express.Router();
 
-const {
+import {
   getAllResidents,
   getResidentById,
   updateResident,
   assignRoom,
   checkoutResident,
-} = require("../controllers/resident.controller");
+} from '../controllers/resident.controller.js';
  
 /**
  * Resident Routes
@@ -34,4 +34,4 @@ router.put("/:id", updateResident);
 router.post("/:id/assign-room", authorizeRoles("admin", "staff"), assignRoom);
 router.post("/:id/checkout",    authorizeRoles("admin", "staff"), checkoutResident);
  
-module.exports = router;
+export default router;

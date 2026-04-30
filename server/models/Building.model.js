@@ -73,4 +73,4 @@ const buildingSchema = new mongoose.Schema(
 buildingSchema.index({ city: 1, state: 1 });
 buildingSchema.index({ status: 1 });
  
-module.exports = mongoose.model("Building", buildingSchema);
+export default mongoose.model("Building", buildingSchema);

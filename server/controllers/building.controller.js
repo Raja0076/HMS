@@ -1,4 +1,4 @@
-import { Building, Floor, Room } from '../models';
+import { Building, Floor, Room } from '../models/index.js';
 
 
 /**
@@ -156,7 +156,7 @@ const getRoomsByBuilding = async (req, res) => {
   }
 };
  
-module.exports = {
+export {
   getAllBuildings,
   createBuilding,
   getBuildingById,
