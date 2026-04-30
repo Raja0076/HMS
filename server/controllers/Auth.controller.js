@@ -22,12 +22,14 @@ const generateToken = (user) => {
 const register = async (req, res) => {
   try {
     const { username, password, fullname, email, mobile, resident_type } = req.body;
+    const normalizedEmail = String(email || "").trim().toLowerCase();
+    const normalizedUsername = String(username || "").trim().toLowerCase();
  
     // Check duplicates
-    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+    const existingUser = await User.findOne({ $or: [{ email: normalizedEmail }, { username: normalizedUsername }] });
     if (existingUser) {
       return res.status(400).json({
-        message: existingUser.email === email
+        message: existingUser.email === normalizedEmail
           ? "Email already in use."
           : "Username already taken.",
       });
@@ -36,10 +38,10 @@ const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
  
     const user = await User.create({
-      username,
+      username: normalizedUsername,
       password: hashedPassword,
       fullname,
-      email,
+      email: normalizedEmail,
       mobile,
       role: "resident",
     });
@@ -75,9 +77,12 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required." });
+    }
  
-    // password is select:false in the schema so we explicitly select it
-    const user = await User.findOne({ email }).select("+password");
+    const normalizedEmail = String(email).trim().toLowerCase();
+    const user = await User.findOne({ email: normalizedEmail }).select("+password");
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password." });
     }
