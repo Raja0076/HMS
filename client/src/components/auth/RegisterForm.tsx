@@ -4,19 +4,28 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { Button, Input, ErrorMessage } from "../common";
 
+interface RegisterFormData {
+  fullname: string;
+  username: string;
+  email: string;
+  mobile: string;
+  resident_type: "student" | "professional" | "other";
+  password: string;
+}
+
 const RegisterForm = () => {
   const { handleRegister } = useAuth();
   const [error, setError]     = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: RegisterFormData) => {
     try {
       setError("");
       setLoading(true);
       await handleRegister(data);
-    } catch (err) {
+    } catch (err: any) {
       setError(err.response?.data?.message || "Registration failed. Please try again.");
     } finally {
       setLoading(false);

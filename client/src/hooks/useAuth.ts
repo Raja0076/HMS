@@ -3,7 +3,11 @@ import useAuthStore from "../stores/authStore";
 import { login, register, logout, getMe } from "../services/auth.service";
 import { setToken } from "../utils/token";
 
-const ROLE_REDIRECT = {
+interface RoleRedirect {
+  [key: string]: string;
+}
+
+const ROLE_REDIRECT: RoleRedirect = {
   admin:    "/admin/dashboard",
   staff:    "/staff/dashboard",
   resident: "/resident/dashboard",
@@ -14,14 +18,14 @@ const useAuth = () => {
   const setAuth     = useAuthStore((s) => s.setAuth);
   const logoutStore = useAuthStore((s) => s.logout);
 
-  const handleLogin = async (data) => {
+  const handleLogin = async (data: { email: string; password: string }) => {
     const res = await login(data);
     setToken(res.data.token);
     setAuth(res.data.user);
     navigate(ROLE_REDIRECT[res.data.user.role]);
   };
 
-  const handleRegister = async (data) => {
+  const handleRegister = async (data:any) => {
     const res = await register(data);
     setToken(res.data.token);
     setAuth(res.data.user);

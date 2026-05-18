@@ -7,6 +7,11 @@ import RegisterPage      from "../pages/auth/RegisterPage";
 import UnauthorizedPage  from "../pages/UnauthorizedPage";
 
 import AdminDashboard    from "../pages/dashboard/AdminDashboard";
+import AdminBuildings    from "../pages/dashboard/AdminBuildings.tsx";
+import AdminFloors       from "../pages/dashboard/AdminFloors.tsx";
+import AdminRooms        from "../pages/dashboard/AdminRooms.tsx";
+import AdminResidents    from "../pages/dashboard/AdminResidents.tsx";
+import AdminUsers        from "../pages/dashboard/AdminUsers.tsx";
 import StaffDashboard    from "../pages/dashboard/StaffDashboard";
 import ResidentDashboard from "../pages/dashboard/ResidentDashboard";
 
@@ -26,7 +31,13 @@ const AppRoute = () => (
         </ProtectedRoute>
       }
     >
+      <Route index element={<Navigate to="dashboard" replace />} />
       <Route path="dashboard" element={<AdminDashboard />} />
+      <Route path="buildings" element={<AdminBuildings />} />
+      <Route path="floors" element={<AdminFloors />} />
+      <Route path="rooms" element={<AdminRooms />} />
+      <Route path="residents" element={<AdminResidents />} />
+      <Route path="users" element={<AdminUsers />} />
     </Route>
 
     {/* Staff */}
@@ -54,7 +65,7 @@ const AppRoute = () => (
     </Route>
 
     {/* Fallback */}
-    <Route path="*" element={<Navigate to="/login" replace />} />
+    
   </Routes>
 );
 

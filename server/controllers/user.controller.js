@@ -18,7 +18,7 @@ const getAllUsers = async (req, res) => {
     const skip = (Number(page) - 1) * Number(limit);
  
     const [users, total] = await Promise.all([
-      User.findOne(filter)
+      User.find(filter)
         .skip(skip)
         .limit(Number(limit))
         .sort({ created_at: -1 }),

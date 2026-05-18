@@ -4,19 +4,24 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { Button, Input, ErrorMessage } from "../common";
 
+interface LoginFormData {
+  email: string;
+  password: string;
+}
+
 const LoginForm = () => {
   const { handleLogin } = useAuth();
   const [error, setError]     = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: LoginFormData) => {
     try {
       setError("");
       setLoading(true);
       await handleLogin(data);
-    } catch (err) {
+    } catch (err: any) {
       setError(err.response?.data?.message || "Login failed. Please try again.");
     } finally {
       setLoading(false);
